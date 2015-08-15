@@ -1,4 +1,4 @@
-package cofile
+package filestore
 
 import (
 	"encoding/json"
@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 // 存储分为两部分：（1）原始文件（2）文件信息
@@ -25,7 +26,7 @@ type FileStore struct {
 
 func NewFileStore(path string) *FileStore {
 	return &FileStore{
-		Path: path,
+		Path: strings.TrimRight(path, "/"),
 	}
 }
 

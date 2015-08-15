@@ -1,4 +1,4 @@
-package cofile
+package filestore
 
 import (
 	"os"

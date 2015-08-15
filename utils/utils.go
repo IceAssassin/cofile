@@ -7,7 +7,7 @@ import (
 )
 
 // 返回文件的md5和大小
-func GetMd5FromFile(filename string) (string, int) {
+func GetMd5FromFile(filename string) (string, int64) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return "", 0
@@ -16,14 +16,14 @@ func GetMd5FromFile(filename string) (string, int) {
 
 	b := make([]byte, 8*1024)
 	h := md5.New()
-	size := 0
+	var size int64 = 0
 
 	for {
 		n, err := file.Read(b)
 		if err != nil {
 			break
 		}
-		size += n
+		size += int64(n)
 		h.Write(b[:n])
 	}
 
